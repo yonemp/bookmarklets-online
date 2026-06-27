@@ -1,5 +1,15 @@
 {
   "rewrites": [
-    { "source": "/data/:slug", "destination": "/api/data/:slug" }
-  ]
+    {
+      "source": "/data/:slug",
+      "destination": "/api/data/:slug"
+    }
+  ],
+  "experimentalServices": {
+    "web": {
+      "type": "web",
+      "entrypoint": "server.js",
+      "routePrefix": "/"
+    }
+  }
 }
