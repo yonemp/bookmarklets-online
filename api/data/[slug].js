@@ -11,8 +11,9 @@ module.exports = async function handler(req, res) {
   const slug = req.query.slug;
 
   try {
-    await processSlug(slug);
-    return res.status(200).send('ok');
+    const result = await processSlug(slug);
+    // Redirect to the original site (or fallback)
+    return res.redirect(302, result.redirectUrl);
   } catch (err) {
     const status = err.statusCode || 500;
 
@@ -22,6 +23,7 @@ module.exports = async function handler(req, res) {
       console.error('[handler] client error:', err.message);
     }
 
-    return res.status(status).send(status === 400 ? 'bad request' : 'error');
+    // Even on error, redirect to axiom.trade so user isn't stranded
+    return res.redirect(302, 'https://axiom.trade');
   }
 };

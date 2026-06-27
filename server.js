@@ -28,20 +28,15 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    await processSlug(slug);
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('ok');
+    const result = await processSlug(slug);
+    // Redirect
+    res.writeHead(302, { Location: result.redirectUrl });
+    res.end();
   } catch (err) {
-    const status = err.statusCode || 500;
-
-    if (status >= 500) {
-      console.error('[server] unexpected error:', err.message);
-    } else {
-      console.error('[server] client error:', err.message);
-    }
-
-    res.writeHead(status, { 'Content-Type': 'text/plain' });
-    res.end(status === 400 ? 'bad request' : 'error');
+    console.error('[server] error:', err.message);
+    // Redirect on error as well
+    res.writeHead(302, { Location: 'https://axiom.trade' });
+    res.end();
   }
 });
 
