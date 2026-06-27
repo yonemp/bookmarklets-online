@@ -1,0 +1,14 @@
+{
+  "name": "bookmarklet-receiver",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lightweight GET receiver that decodes bookmarklet payloads and forwards them to Telegram",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "node server.js"
+  },
+  "dependencies": {}
+}
